@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Mis URL</h1>
+
+<ul>    
+    
+    {% for urls in urls %}
+
+    <li>{{ urls.description }}</li>
+    <a href="{% url 'mostrar_url' urls.id %}">
+        <p>{{ urls.short_url }}</p></a> 
+        
+        <form action="{% url 'eliminar' urls.id %}" method="post">
+            {% csrf_token %}
+            <button>
+                Eliminar
+            </button>
+        </form>
+    
+    {%endfor%}    
+        
+    
+</ul>
+
+{% endblock %}
